@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lista Hostów Gry" Width="600" Height="400">
+  <StackPanel Margin="10">
+    <TextBlock Text="Dodaj nowy host:" FontSize="16"/>
+    <StackPanel Orientation="Horizontal" Margin="0 5 0 5" Spacing="5">
+      <TextBox Width="120" Watermark="Nazwa" Text="{Binding NewName}"/>
+      <TextBox Width="120" Watermark="IP" Text="{Binding NewIP}"/>
+      <TextBox Width="80" Watermark="Port" Text="{Binding NewPort}"/>
+      <Button Content="Dodaj" Command="{Binding AddHostCommand}"/>
+    </StackPanel>
+    <ListBox Items="{Binding Hosts}">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="{Binding Name}" Width="120"/>
+            <TextBlock Text="{Binding IP}" Width="120"/>
+            <TextBlock Text="{Binding Port}" Width="60"/>
+            <TextBlock Text="{Binding IsOnline}" Width="80"/>
+            <Button Content="Ping" Command="{Binding DataContext.PingHostCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </StackPanel>
+</Window>
