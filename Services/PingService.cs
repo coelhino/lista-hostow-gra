@@ -1,19 +1,21 @@
 using System.Net.NetworkInformation;
-using System.Threading.Tasks;
 
-public class PingService
+namespace GameHostList.Services
 {
-    public async Task<bool> PingHostAsync(string ip)
+    public class PingService
     {
-        try
+        public async Task<bool> PingHostAsync(string ip)
         {
-            var ping = new Ping();
-            var reply = await ping.SendPingAsync(ip, 1000);
-            return reply.Status == IPStatus.Success;
-        }
-        catch
-        {
-            return false;
+            try
+            {
+                using var ping = new Ping();
+                var reply = await ping.SendPingAsync(ip, 1000);
+                return reply.Status == IPStatus.Success;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

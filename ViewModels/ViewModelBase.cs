@@ -1,3 +1,6 @@
 using ReactiveUI;
 
-public class ViewModelBase : ReactiveObject { }
+namespace GameHostList.ViewModels
+{
+    public class ViewModelBase : ReactiveObject { }
+}
